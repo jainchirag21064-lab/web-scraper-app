@@ -1,0 +1,4 @@
+streamlit # For building web applications
+requests # For making HTTP requests
+fastapi # 
+fastapi[standard] #
