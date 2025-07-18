@@ -23,7 +23,7 @@ async def read_root(url:str):
     """    
     jina_reader_api = "https://r.jina.ai/"
     try:
-        response = requests.get(jina_reader_api.join(url), headers=headers)
+        response = requests.get(jina_reader_api+url, headers=headers)
         if response.status_code != 200:
             raise Exception(f"Failed to fetch page. Status code: {response.status_code}")            
     except Exception as e:
