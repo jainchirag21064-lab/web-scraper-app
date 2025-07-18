@@ -29,8 +29,9 @@ async def read_root(url:str):
     except Exception as e:
             print(f"An error occurred during scraping with playwright: {str(e)}")
             return None            
+
     return Response(
-            content=response.content,
+            content=response.text,
             headers={"Content-Type" : "text/markdown"},
             status_code=response.status_code
         )
