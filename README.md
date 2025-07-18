@@ -1,3 +1,11 @@
+---
+title: web-scraper-app
+sdk: docker
+emoji: 💻
+colorFrom: yellow
+colorTo: yellow
+short_description: A simple app that acts as proxy api for JinaAI Reader API
+---
 # 🕸️🐍🔎 web-scraper-app
 
 A simple app that acts as proxy api for JinaAI Reader API
