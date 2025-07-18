@@ -1,6 +1,7 @@
 
 from fastapi import FastAPI
 import requests
+from fastapi.responses import Response
 
 
 app = FastAPI()
@@ -22,10 +23,14 @@ async def read_root(url:str):
     """    
     jina_reader_api = "https://r.jina.ai/"
     try:
-        response = requests.get(jina_reader_api+url, headers=headers)
+        response = requests.get(jina_reader_api.join(url), headers=headers)
         if response.status_code != 200:
             raise Exception(f"Failed to fetch page. Status code: {response.status_code}")            
     except Exception as e:
             print(f"An error occurred during scraping with playwright: {str(e)}")
             return None            
-    return response.text
+    return Response(
+            content=response.content,
+            headers=response.headers.get("Content-Type", "text/markdown"),
+            status_code=r.status_code
+        )
