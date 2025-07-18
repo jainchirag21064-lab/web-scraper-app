@@ -31,6 +31,6 @@ async def read_root(url:str):
             return None            
     return Response(
             content=response.content,
-            headers=response.headers.get("Content-Type", "text/markdown"),
-            status_code=r.status_code
+            headers={"Content-Type" : "text/markdown"},
+            status_code=response.status_code
         )
