@@ -1,20 +1,13 @@
-# Use the official Python image from the Docker Hub, specifying the version
-FROM python:3.9-slim
+FROM python:3.9
 
-# Set the working directory in the container
+RUN useradd -m -u 1000 user
+USER user
+ENV PATH="/home/user/.local/bin:$PATH"
+
 WORKDIR /app
 
-# Copy the requirements file to the container
-COPY requirements.txt .
+COPY --chown=user ./requirements.txt requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
 
-# Install the required Python packages
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the source code to the container
-COPY src/ ./src/
-
-# Expose the port that the Flask app runs on
-EXPOSE 5000
-
-# Define the command to start the Flask application
-CMD ["python", "src/app.py"]
+COPY --chown=user . /app
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
